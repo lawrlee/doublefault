@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/doublefault
+    ports:
+      - "8080:8080"
+    depends_on:
+      - df-redis
+      - df-postgres
+    network_mode: bridge
+
+  df-postgres:
+    image: postgres:9.5-alpine
+    environment:
+      POSTGRES_USER: doublefault
+      POSTGRES_PASSWORD: doublefault
+    network_mode: bridge
+    ports:
+      - "5432:5432"
+
+  df-redis:
+    image: redis:3-alpine
+    network_mode: bridge
+    ports:
+      - "6379:6379"

@@ -1,0 +1,8 @@
+django
+graphene
+psycopg2
+pytest
+gunicorn
+gevent
+pip-tools
+social-auth-app-django
