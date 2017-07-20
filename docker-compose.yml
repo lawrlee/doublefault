@@ -10,6 +10,9 @@ services:
     depends_on:
       - df-redis
       - df-postgres
+    links:
+      - df-redis
+      - df-postgres
     network_mode: bridge
 
   df-postgres:
