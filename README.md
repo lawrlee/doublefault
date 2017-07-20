@@ -1,3 +1,3 @@
-h1. Double Fault
+# Double Fault
 
 An open source Question/Answer platform inspired by Stack Overflow.
