@@ -6,3 +6,5 @@ gunicorn
 gevent
 pip-tools
 social-auth-app-django
+graphene-django
+ipython
