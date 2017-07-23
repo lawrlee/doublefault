@@ -4,5 +4,5 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class DoublefaultConfig(AppConfig):
-    name = 'doublefault'
+class WebConfig(AppConfig):
+    name = 'web'

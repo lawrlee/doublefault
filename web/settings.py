@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'doublefault.apps.DoublefaultConfig',
+    'web.apps.WebConfig',
     'social_django',
+    'graphene_django'
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'doublefault.schema.schema'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
-ROOT_URLCONF = 'doublefault.urls'
+ROOT_URLCONF = 'web.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'doublefault.wsgi.application'
+WSGI_APPLICATION = 'web.wsgi.application'
 
 
 # Database
