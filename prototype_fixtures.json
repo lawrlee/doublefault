@@ -54,7 +54,7 @@
   }
 },
 {
-  "model": "doublefault.post",
+  "model": "web.post",
   "pk": 1,
   "fields": {
     "post_text": "my first question",
@@ -67,7 +67,7 @@
   }
 },
 {
-  "model": "doublefault.post",
+  "model": "web.post",
   "pk": 2,
   "fields": {
     "post_text": "my first answer",
@@ -80,7 +80,7 @@
   }
 },
 {
-  "model": "doublefault.post",
+  "model": "web.post",
   "pk": 3,
   "fields": {
     "post_text": "this is a great question",
@@ -93,7 +93,7 @@
   }
 },
 {
-  "model": "doublefault.post",
+  "model": "web.post",
   "pk": 4,
   "fields": {
     "post_text": "this is a great answer",
@@ -106,7 +106,7 @@
   }
 },
 {
-  "model": "doublefault.post",
+  "model": "web.post",
   "pk": 5,
   "fields": {
     "post_text": "I don't know",
@@ -119,7 +119,7 @@
   }
 },
 {
-  "model": "doublefault.questionpost",
+  "model": "web.questionpost",
   "pk": 1,
   "fields": {
     "accepted_answer": 2,
@@ -130,7 +130,7 @@
   }
 },
 {
-  "model": "doublefault.answerpost",
+  "model": "web.answerpost",
   "pk": 2,
   "fields": {
     "question": 1,
@@ -139,7 +139,7 @@
   }
 },
 {
-  "model": "doublefault.answerpost",
+  "model": "web.answerpost",
   "pk": 5,
   "fields": {
     "question": 1,
@@ -148,7 +148,7 @@
   }
 },
 {
-  "model": "doublefault.tag",
+  "model": "web.tag",
   "pk": 1,
   "fields": {
     "name": "topic1",
@@ -158,7 +158,7 @@
   }
 },
 {
-  "model": "doublefault.tag",
+  "model": "web.tag",
   "pk": 2,
   "fields": {
     "name": "topic2",
