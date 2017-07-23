@@ -3,24 +3,86 @@ import graphene
 from graphene_django.types import DjangoObjectType
 
 from web.models import Post, AnswerPost, QuestionPost, Tag
+from django.contrib.auth.models import User
 
-class PostType(DjangoObjectType):
+
+class UserType(DjangoObjectType):
     class Meta:
-        model = Post
-    
-class AnswerPostType(DjangoObjectType):
-    class Meta:
-        model = AnswerPost
-    
-class QuestionPostType(DjangoObjectType):
-    class Meta:
-        model = QuestionPost
+        model = User
+
 
 class TagType(DjangoObjectType):
     class Meta:
+        model = Tag
+
+
+class PostType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
+    score = graphene.String(source='score')
+
+    @graphene.resolve_only_args
+    def resolve_upvotes(self):
+        return self.upvotes.all()
+
+    @graphene.resolve_only_args
+    def resolve_downvotes(self):
+        return self.downvotes.all()
+
+    class Meta:
+        model = Post
+
+
+class AnswerPostType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
+    score = graphene.String(source='score')
+    child_posts = graphene.List(PostType)
+
+    @graphene.resolve_only_args
+    def resolve_upvotes(self):
+        return self.upvotes.all()
+
+    @graphene.resolve_only_args
+    def resolve_downvotes(self):
+        return self.downvotes.all()
+
+    @graphene.resolve_only_args
+    def resolve_child_posts(self):
+        return self.child_posts.all()
+
+    class Meta:
+        model = AnswerPost
+
+
+class QuestionPostType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
+    score = graphene.String(source='score')
+    child_posts = graphene.List(PostType)
+    tags = graphene.List(TagType)
+
+    @graphene.resolve_only_args
+    def resolve_upvotes(self):
+        return self.upvotes.all()
+
+    @graphene.resolve_only_args
+    def resolve_downvotes(self):
+        return self.downvotes.all()
+
+    @graphene.resolve_only_args
+    def resolve_child_posts(self):
+        return self.child_posts.all()
+
+    @graphene.resolve_only_args
+    def resolve_tags(self):
+        return self.tags.all()
+
+    class Meta:
         model = QuestionPost
 
-class DoubleFaultQuery(graphene.AbstractType):
+
+class Query(graphene.ObjectType):
     all_posts = graphene.List(PostType)
     all_answer_posts = graphene.List(AnswerPostType)
     all_question_posts = graphene.List(QuestionPostType)
@@ -39,8 +101,8 @@ class DoubleFaultQuery(graphene.AbstractType):
         return Tag.objects.all()
 
 
-class Query(DoubleFaultQuery, graphene.ObjectType):
-    pass
+# class Query(DoubleFaultQuery, graphene.ObjectType):
+#     pass
 
 
 schema = graphene.Schema(query=Query)
