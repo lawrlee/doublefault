@@ -83,6 +83,8 @@ class QuestionPostType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
+    # List queries
+
     all_posts = graphene.List(PostType)
     all_answer_posts = graphene.List(AnswerPostType)
     all_question_posts = graphene.List(QuestionPostType)
@@ -99,6 +101,21 @@ class Query(graphene.ObjectType):
 
     def resolve_all_tags(self, args, context, info):
         return Tag.objects.all()
+
+    # Single object queries
+
+    question_post = graphene.Field(QuestionPostType,
+                                   id=graphene.Int())
+
+    def resolve_question_post(self, args, content, info):
+        id = args.get('id')
+
+        if id is not None:
+            return QuestionPost.objects.get(pk=id)
+
+        return None
+
+
 
 
 # class Query(DoubleFaultQuery, graphene.ObjectType):
