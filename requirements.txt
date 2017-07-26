@@ -9,8 +9,10 @@ certifi==2017.4.17        # via requests
 chardet==3.0.4            # via requests
 click==6.7                # via pip-tools
 decorator==4.1.2          # via ipython, traitlets
+django-filter==1.0.4
 django==1.11.3
 enum34==1.1.6             # via traitlets
+fancycompleter==0.7       # via pdbpp
 first==2.0.1              # via pip-tools
 gevent==1.2.2
 graphene-django==1.3
@@ -25,6 +27,7 @@ ipython==5.4.1
 iso8601==0.1.11           # via graphene-django
 oauthlib==2.0.2           # via requests-oauthlib, social-auth-core
 pathlib2==2.3.0           # via ipython, pickleshare
+pdbpp==0.9.1
 pexpect==4.2.1            # via ipython
 pickleshare==0.7.4        # via ipython
 pip-tools==1.9.0
@@ -33,8 +36,10 @@ prompt-toolkit==1.0.14    # via ipython
 psycopg2==2.7.1
 ptyprocess==0.5.2         # via pexpect
 py==1.4.34                # via pytest
-pygments==2.2.0           # via ipython
+pygments==2.2.0           # via ipython, pdbpp
 pyjwt==1.5.2              # via social-auth-core
+pyrepl==0.8.4             # via fancycompleter
+pytest-django==3.1.2
 pytest==3.1.3
 python-openid==2.2.5      # via social-auth-core
 pytz==2017.2              # via django
@@ -50,3 +55,4 @@ traitlets==4.3.2          # via ipython
 typing==3.6.1             # via promise
 urllib3==1.21.1           # via requests
 wcwidth==0.1.7            # via prompt-toolkit
+wmctrl==0.3               # via pdbpp
