@@ -1,0 +1,201 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test_user_1",
+    "first_name": "Test",
+    "last_name": "One",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-07-25T19:56:49.238Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test_user_2",
+    "first_name": "Test",
+    "last_name": "Two",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-07-25T19:57:02.979Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test_user_3",
+    "first_name": "Test",
+    "last_name": "Three",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-07-25T19:57:18.559Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "web.comment",
+  "pk": 2,
+  "fields": {
+    "text": "this is a great question",
+    "created": "2017-07-25T23:06:21.498Z",
+    "modified": "2017-07-25T23:06:21.499Z",
+    "owner": 3,
+    "question": 1,
+    "answer": null,
+    "upvotes": [],
+    "downvotes": []
+  }
+},
+{
+  "model": "web.comment",
+  "pk": 3,
+  "fields": {
+    "text": "this is a dumb question",
+    "created": "2017-07-25T23:08:35.390Z",
+    "modified": "2017-07-25T23:08:35.390Z",
+    "owner": 1,
+    "question": 1,
+    "answer": null,
+    "upvotes": [],
+    "downvotes": []
+  }
+},
+{
+  "model": "web.comment",
+  "pk": 4,
+  "fields": {
+    "text": "this is a great answer",
+    "created": "2017-07-25T23:16:05.221Z",
+    "modified": "2017-07-25T23:16:05.221Z",
+    "owner": 3,
+    "question": null,
+    "answer": 1,
+    "upvotes": [],
+    "downvotes": []
+  }
+},
+{
+  "model": "web.comment",
+  "pk": 5,
+  "fields": {
+    "text": "another comment",
+    "created": "2017-07-25T23:26:37.352Z",
+    "modified": "2017-07-25T23:26:37.352Z",
+    "owner": 2,
+    "question": 1,
+    "answer": null,
+    "upvotes": [],
+    "downvotes": []
+  }
+},
+{
+  "model": "web.question",
+  "pk": 1,
+  "fields": {
+    "text": "my first question",
+    "created": "2017-07-25T20:03:28.013Z",
+    "modified": "2017-07-25T23:25:42.490Z",
+    "owner": 1,
+    "accepted_answer": 2,
+    "views": 0,
+    "upvotes": [
+      1,
+      2,
+      3
+    ],
+    "downvotes": [],
+    "tags": []
+  }
+},
+{
+  "model": "web.question",
+  "pk": 2,
+  "fields": {
+    "text": "my second question",
+    "created": "2017-07-25T20:03:49.494Z",
+    "modified": "2017-07-25T20:03:49.494Z",
+    "owner": 2,
+    "accepted_answer": null,
+    "views": 0,
+    "upvotes": [],
+    "downvotes": [],
+    "tags": []
+  }
+},
+{
+  "model": "web.answer",
+  "pk": 1,
+  "fields": {
+    "text": "my first answer",
+    "created": "2017-07-25T20:09:42.994Z",
+    "modified": "2017-07-25T23:25:21.304Z",
+    "owner": 2,
+    "question": 1,
+    "upvotes": [
+      1,
+      2
+    ],
+    "downvotes": [
+      3
+    ]
+  }
+},
+{
+  "model": "web.answer",
+  "pk": 2,
+  "fields": {
+    "text": "another answer",
+    "created": "2017-07-25T20:09:42.994Z",
+    "modified": "2017-07-25T23:25:21.304Z",
+    "owner": 3,
+    "question": 1,
+    "upvotes": [],
+    "downvotes": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "web.tag",
+  "pk": 1,
+  "fields": {
+    "name": "python",
+    "users": [
+      1
+    ]
+  }
+},
+{
+  "model": "web.tag",
+  "pk": 2,
+  "fields": {
+    "name": "django",
+    "users": [
+      2
+    ]
+  }
+}
+]
