@@ -119,7 +119,8 @@ class EditPostMixin(object):
 
         if post.owner_id != int(user_pk):
             raise Exception(
-                'User={} cannot edit {}={} owned by user={}.'.format(user_pk, post.__name__, post.id, post.owner_id))
+                'User={} cannot edit {}={} owned by user={}.'.format(user_pk, post.__class__.__name__, post.id,
+                                                                     post.owner_id))
 
         post.text = text
         post.save()
@@ -156,7 +157,7 @@ class EditAnswer(relay.ClientIDMutation, EditPostMixin):
 
     post_cls = Answer
     field_name = 'answer'
-    post = graphene.Field(lambda: AnswerNode)
+    answer = graphene.Field(lambda: AnswerNode)
 
 
 class UpvotePostMixin(object):
@@ -166,7 +167,7 @@ class UpvotePostMixin(object):
     model to only allow either an upvote or downvote.
     """
 
-    @staticmethod
+    @classmethod
     def mutate_and_get_payload(cls, input, context, info):
         post_cls = cls.post_cls
         field_name = cls.field_name
@@ -179,7 +180,7 @@ class UpvotePostMixin(object):
         user = User.objects.get(pk=user_pk)
         post = post_cls.objects.get(pk=post_pk)
 
-        post.upvote.add(user)
+        post.upvotes.add(user)
         post.save()
         return cls(**{cls.field_name: post})
 
@@ -221,7 +222,7 @@ class DownvotePostMixin(object):
     model to only allow either an upvote or downvote.
     """
 
-    @staticmethod
+    @classmethod
     def mutate_and_get_payload(cls, input, context, info):
         post_cls = cls.post_cls
         field_name = cls.field_name
@@ -234,7 +235,7 @@ class DownvotePostMixin(object):
         user = User.objects.get(pk=user_pk)
         post = post_cls.objects.get(pk=post_pk)
 
-        post.downvote.add(user)
+        post.downvotes.add(user)
         post.save()
         return cls(**{cls.field_name: post})
 
