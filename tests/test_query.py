@@ -72,89 +72,55 @@ FULL_QUERY = '''
 '''
 
 
-@pytest.mark.django_db(transaction=False)
-def test_get_question(client, all_question_query_result):
-    question_id = all_question_query_result['data']['allQuestions']['edges'][0]['node']['id']
-    executed = client.execute(
-        '''
+def _get_all_query(query):
+    return '''
 {{
-  question(id: "{question_id}") {{
-    id
+  {query} {{
+    edges {{
+      node {{
+        id
+      }}
+    }}
   }} 
 }}
-        '''.format(question_id=question_id)
-    )
-    assert 'question' in executed['data']
-    assert executed['data']['question']['id'] == question_id
+'''.format(query=query)
 
 
-@pytest.mark.django_db(transaction=False)
-def test_get_all_questions(all_question_query_result):
-    assert 'allQuestions' in all_question_query_result['data']
-    assert len(all_question_query_result['data']['allQuestions']['edges']) == 2
-
-
-@pytest.mark.django_db(transaction=False)
-def test_get_answer(client, all_answer_query_result):
-    answer_id = all_answer_query_result['data']['allAnswers']['edges'][0]['node']['id']
-    executed = client.execute(
-        '''
-{{
-  answer(id: "{answer_id}") {{
+def _get_single_query(query, relay_id):
+    return '''
+{{ 
+  {query}(id: "{relay_id}") {{
     id
-  }} 
+    text
+  }}
 }}
-        '''.format(answer_id=answer_id)
-    )
-    assert 'answer' in executed['data']
-    assert executed['data']['answer']['id'] == answer_id
+    '''.format(query=query,
+               relay_id=relay_id)
+
+
+LIST_QUERIES = ['allQuestions',
+                'allAnswers',
+                'allComments',
+                'allTags',
+                'allUsers']
+
+SINGLE_QUERIES = ['question',
+                  'answer',
+                  'comment',
+                  'tag',
+                  'user']
+
+@pytest.mark.django_db(transaction=False)
+@pytest.mark.parametrize('query', LIST_QUERIES)
+def test_get_all(client, snapshot, query):
+    result = client.execute(_get_all_query(query))
+    snapshot.assert_match(result)
 
 
 @pytest.mark.django_db(transaction=False)
-def test_get_all_answers(all_answer_query_result):
-    assert 'allAnswers' in all_answer_query_result['data']
-    assert len(all_answer_query_result['data']['allAnswers']['edges']) == 2
-
-
-@pytest.mark.django_db(transaction=False)
-def test_get_comment(client, all_comment_query_result):
-    comment_id = all_comment_query_result['data']['allComments']['edges'][0]['node']['id']
-    executed = client.execute(
-        '''
-{{
-  comment(id: "{comment_id}") {{
-    id
-  }} 
-}}
-        '''.format(comment_id=comment_id)
-    )
-    assert 'comment' in executed['data']
-    assert executed['data']['comment']['id'] == comment_id
-
-
-@pytest.mark.django_db(transaction=False)
-def test_get_all_comments(all_comment_query_result):
-    assert 'allComments' in all_comment_query_result['data']
-    assert len(all_comment_query_result['data']['allComments']['edges']) == 4
-
-
-@pytest.mark.django_db(transaction=False)
-def test_get_tag(client, all_tag_query_result):
-    tag_id = all_tag_query_result['data']['allTags']['edges'][0]['node']['id']
-    executed = client.execute(
-        '''
-{{
-  tag(id: "{tag_id}") {{
-    id
-  }} 
-}}
-        '''.format(tag_id=tag_id)
-    )
-    assert 'tag' in executed['data']
-    assert executed['data']['tag']['id'] == tag_id
-
-
-@pytest.mark.django_db(transaction=False)
-def test_get_all_tags(all_tag_query_result):
-    assert 'allTags' in all_tag_query_result['data']
-    assert len(all_tag_query_result['data']['allTags']['edges']) == 2
+@pytest.mark.parametrize('list_query,single_query', zip(LIST_QUERIES, SINGLE_QUERIES))
+def test_get_single(client, snapshot, list_query, single_query):
+    all_objects = client.execute(_get_all_query(list_query))
+    relay_id = all_objects['data'][list_query]['edges'][0]['node']['id']
+    result = client.execute(_get_single_query(single_query, relay_id))
+    snapshot.assert_match(result)
