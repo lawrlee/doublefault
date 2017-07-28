@@ -48,9 +48,11 @@ requests==2.18.1          # via requests-oauthlib, social-auth-core
 scandir==1.5              # via pathlib2
 simplegeneric==0.8.1      # via ipython
 singledispatch==3.4.0.3   # via graphene-django
-six==1.10.0               # via graphene, graphene-django, graphql-core, graphql-relay, pathlib2, pip-tools, promise, prompt-toolkit, singledispatch, social-auth-app-django, social-auth-core, traitlets
+six==1.10.0               # via graphene, graphene-django, graphql-core, graphql-relay, pathlib2, pip-tools, promise, prompt-toolkit, singledispatch, snapshottest, social-auth-app-django, social-auth-core, traitlets
+snapshottest==0.5.0
 social-auth-app-django==1.2.0
 social-auth-core==1.4.0   # via social-auth-app-django
+termcolor==1.1.0          # via snapshottest
 traitlets==4.3.2          # via ipython
 typing==3.6.1             # via promise
 urllib3==1.21.1           # via requests

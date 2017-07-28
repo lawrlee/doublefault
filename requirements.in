@@ -11,3 +11,4 @@ django-filter
 pytest-django
 ipython
 pdbpp
+snapshottest
