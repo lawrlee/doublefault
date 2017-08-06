@@ -17,7 +17,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose build
-  - docker-compose run --rm pytest tests/
+  - docker-compose run --rm web pytest tests/
 
 script:
   - pytest tests/
