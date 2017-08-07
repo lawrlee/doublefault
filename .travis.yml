@@ -10,7 +10,6 @@ before_install:
   - curl -fsSL get.docker.com -o get-docker.sh
   - sudo sh get-docker.sh
   - docker build -t doublefault .
-  - docker run --rm -e "GOOGLE_OAUTH_KEY=" -e "GOOGLE_OAUTH_SECRET=" doublefault pytest --ds=test_settings tests/
 
 script:
-  - pytest --ds=test_settings tests/
+  - docker run --rm -e "GOOGLE_OAUTH_KEY=" -e "GOOGLE_OAUTH_SECRET=" doublefault pytest --ds=test_settings tests/
