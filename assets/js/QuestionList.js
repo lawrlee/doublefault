@@ -55,56 +55,41 @@ class QuestionItem extends Component {
     const question = this.props.question;
 
     return (
-      <table style={{tableLayout: 'fixed'}}>
-        <tbody>
-        <tr>
-          <td style={{width: '260px'}}>
-            <div style={{display: 'flex'}}>
-              <div className="pt-card" style={{textAlign: 'center'}}>
-                <h5>{question.score}</h5>
-                <span className="pt-text-muted">Votes</span>
-              </div>
-              <div className="pt-card" style={{textAlign: 'center'}}>
-                <h5>{question.answers.length}</h5>
-                <span className="pt-text-muted">Answers</span>
-              </div>
-              <div className="pt-card" style={{textAlign: 'center'}}>
-                <h5>{question.views}</h5>
-                <span className="pt-text-muted">Views</span>
-              </div>
+      <div id="questionItem">
+        <div id="votesAnswersViews">
+          <div className="pt-card">
+            <h5>{question.score}</h5>
+            <span className="pt-text-muted">Votes</span>
+          </div>
+          <div className="pt-card">
+            <h5>{question.answers.length}</h5>
+            <span className="pt-text-muted">Answers</span>
+          </div>
+          <div className="pt-card">
+            <h5>{question.views}</h5>
+            <span className="pt-text-muted">Views</span>
+          </div>
+        </div>
+        <div id="questionSummary">
+          <div>
+            <h5>{question.title}</h5>
+            <blockquote className="pt-text-overflow-ellipsis">
+              {question.text}
+            </blockquote>
+          </div>
+          <div id="tagsAndOwner">
+            <div id="questionTags">
+              {question.tags.map((tag) =>
+                <Tag key={tag.id} className="pt-tag pt-minimal pt-intent-primary">{tag.name}</Tag>)
+              }
             </div>
-          </td>
-          <td style={{width: '100%'}}>
-            <table style={{width: '100%'}}>
-              <tbody>
-              <tr>
-                <td><h5>{question.title}</h5></td>
-              </tr>
-              <tr>
-                <td>
-                  <blockquote className="pt-text-overflow-ellipsis">
-                    {question.text}
-                  </blockquote>
-                </td>
-              </tr>
-              <tr>
-                <td>{question.tags.map((tag) =>
-                  <Tag key={tag.id} className="pt-tag pt-minimal pt-intent-primary">{tag.name}</Tag>)
-                }
-                </td>
-              </tr>
-              <tr>
-                <td style={{textAlign: 'right'}}>
-                  asked {moment(question.created).fromNow()} - {question.owner.getFullName}&nbsp;
-                  <Icon iconName="pt-icon-person"/>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            <div id="questionOwner">
+              asked {moment(question.created).fromNow()} - {question.owner.getFullName}&nbsp;<Icon
+              iconName="pt-icon-person"/>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 
