@@ -14,6 +14,12 @@ main {
     flex-direction: row;
 }
 
+#loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 content {
     margin: 4px;
     padding: 4px;
@@ -37,14 +43,14 @@ right {
     order: 3;
 }
 
-#questionItem {
+.questionItem {
     margin: 4px;
     padding: 5px;
     display: flex;
     flex-direction: row;
 }
 
-#questionItem > #votesAnswersViews {
+.questionItem > .votesAnswersViews {
     width: 280px;
     order: 1;
     align-items: center;
@@ -52,11 +58,11 @@ right {
     flex-direction: row;
 }
 
-#votesAnswersViews > .pt-card {
+.votesAnswersViews > .pt-card {
     text-align: center;
 }
 
-#questionItem > #questionSummary {
+.questionItem > .questionSummary {
     margin: 4px;
     padding: 5px;
     flex-grow: 2;
@@ -66,18 +72,65 @@ right {
     flex-direction: column;
 }
 
-#questionSummary > #tagsAndOwner {
+.questionSummary > .tagsAndOwner {
     flex-grow: 2;
     display: flex;
     flex-direction: row;
 }
 
-#tagsAndOwner > #questionTags {
+.tagsAndOwner > .questionTags {
     flex-grow: 1;
     text-align: left;
 }
 
-#tagsAndOwner > #questionOwner {
+.tagsAndOwner > .questionOwner {
     flex-grow: 1;
     text-align: right;
+}
+
+.questionDetail {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.questionBlock {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: stretch;
+}
+
+.questionScore {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questionText, .questionTags, .questionOwner, commentBlock {
+    margin: 4px;
+}
+
+.questionOwner {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userBadge {
+    background-color: #E1E8ED;
+    text-align: right;
+}
+
+.comment {
+    /*margin: 2px;*/
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.commentScore {
+    color: #BFCCD6;
+    margin-right: 15px;
 }

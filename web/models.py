@@ -35,6 +35,7 @@ class Question(AbstractPost):
     A question model. Questions can be tagged with multiple `Tag` objects. The `views` field should increment itself
     on a page load/view. Each question can have one accepted `answer` object.
     """
+    title = models.TextField()
     tags = models.ManyToManyField('Tag', related_name='questions')
     # TODO: accepting an answer is creating a 1-to-1 entry between the question and answer, but it doesn't validate
     #       whether the question and answer are related already. Should there be a limit_choices_to parameter here?

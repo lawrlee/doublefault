@@ -1,33 +1,38 @@
 import graphene
-from graphene import relay
 from graphene_django.types import DjangoObjectType
 
 from web.models import Comment, Answer, Question, Tag
 from django.contrib.auth.models import User
 
-__all__ = ['UserNode',
-           'TagNode',
-           'PostNode',
-           'AnswerNode',
-           'QuestionNode']
+__all__ = ['UserType',
+           'TagType',
+           'PostType',
+           'AnswerType',
+           'QuestionType']
 
 
-class UserNode(DjangoObjectType):
+class UserType(DjangoObjectType):
+    get_full_name = graphene.String(source='get_full_name')
+
     class Meta:
         model = User
-        interfaces = (relay.Node,)
 
 
-class TagNode(DjangoObjectType):
+class TagType(DjangoObjectType):
+    users = graphene.List(UserType)
+
+    @graphene.resolve_only_args
+    def resolve_users(self):
+        return self.users.all()
+
     class Meta:
         model = Tag
         filter_fields = ['name', 'users']
-        interfaces = (relay.Node,)
 
 
-class CommentNode(DjangoObjectType):
-    upvotes = graphene.List(UserNode)
-    downvotes = graphene.List(UserNode)
+class CommentType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
     score = graphene.String(source='score')
 
     @graphene.resolve_only_args
@@ -40,14 +45,13 @@ class CommentNode(DjangoObjectType):
 
     class Meta:
         model = Comment
-        interfaces = (relay.Node,)
 
 
-class AnswerNode(DjangoObjectType):
-    upvotes = graphene.List(UserNode)
-    downvotes = graphene.List(UserNode)
+class AnswerType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
     score = graphene.String(source='score')
-    comments = graphene.List(CommentNode)
+    comments = graphene.List(CommentType)
 
     @graphene.resolve_only_args
     def resolve_upvotes(self):
@@ -63,15 +67,14 @@ class AnswerNode(DjangoObjectType):
 
     class Meta:
         model = Answer
-        interfaces = (relay.Node,)
 
 
-class QuestionNode(DjangoObjectType):
-    upvotes = graphene.List(UserNode)
-    downvotes = graphene.List(UserNode)
+class QuestionType(DjangoObjectType):
+    upvotes = graphene.List(UserType)
+    downvotes = graphene.List(UserType)
     score = graphene.String(source='score')
-    comments = graphene.List(CommentNode)
-    tags = graphene.List(TagNode)
+    comments = graphene.List(CommentType)
+    tags = graphene.List(TagType)
 
     @graphene.resolve_only_args
     def resolve_upvotes(self):
@@ -91,4 +94,3 @@ class QuestionNode(DjangoObjectType):
 
     class Meta:
         model = Question
-        interfaces = (relay.Node,)

@@ -113,7 +113,8 @@
   "model": "web.question",
   "pk": 1,
   "fields": {
-    "text": "my first question",
+    "title": "my first question",
+    "text": "why is the sky blue?",
     "created": "2017-07-25T20:03:28.013Z",
     "modified": "2017-07-25T23:25:42.490Z",
     "owner": 1,
@@ -125,14 +126,17 @@
       3
     ],
     "downvotes": [],
-    "tags": []
+    "tags": [
+      1
+    ]
   }
 },
 {
   "model": "web.question",
   "pk": 2,
   "fields": {
-    "text": "my second question",
+    "title": "my second question",
+    "text": "why did the chicken cross the road?",
     "created": "2017-07-25T20:03:49.494Z",
     "modified": "2017-07-25T20:03:49.494Z",
     "owner": 2,
@@ -140,7 +144,9 @@
     "views": 0,
     "upvotes": [],
     "downvotes": [],
-    "tags": []
+    "tags": [
+      2
+    ]
   }
 },
 {

@@ -24,10 +24,12 @@ from web.schema import schema
 from web import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    # url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-    url(r'^oauth2/', include('social_django.urls', namespace='social'))
+    url(r'^oauth2/', include('social_django.urls', namespace='social')),
+    url(r'^.*$', views.home, name='home')  # catch remaining urls and send to react router
+
 ]

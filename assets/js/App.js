@@ -1,34 +1,19 @@
-import {
-  QueryRenderer,
-  graphql
-} from 'react-relay'
-import environment from './Environment'
 import React, {Component} from 'react'
 import QuestionList from './QuestionList'
-
-const AppAllQuestionQuery = graphql`
-  query AppAllQuestionsQuery {
-    questions {
-      ...QuestionList_questions
-    }
-  }
-`
+import Question from './QuestionDetail'
+import Navbar from './Navbar'
+import {Switch, Route} from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <QueryRenderer
-        environment={environment}
-        query={AppAllQuestionQuery}
-        render={({error, props}) => {
-          if (error) {
-            return <div>{error.message}</div>
-          } else if (props) {
-            return <QuestionList questions={props.questions}/>
-          }
-          return <div>Loading</div>
-        }}
-      />
+      <div>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/" component={QuestionList}/>
+          <Route path="/question/:id" component={Question}/>
+        </Switch>
+      </div>
     )
   }
 }
