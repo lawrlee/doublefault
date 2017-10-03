@@ -7,14 +7,9 @@
     {% render_bundle 'main' 'css' %}
     <script type="text/javascript">
       const user = {
-        isAuthenticated: {
-      {
-        user.is_authenticated | yesno
-      :
-        "true,false"
-      }
-      },
-      fullName: "{{ user.get_full_name }}"
+        id: "{{ user.id }}",
+        isAuthenticated: {{ user.is_authenticated|yesno:"true,false" }},
+        fullName: "{{ user.get_full_name }}"
       }
     </script>
     {% csrf_token %}

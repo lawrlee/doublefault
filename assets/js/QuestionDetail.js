@@ -4,49 +4,9 @@ import {Spinner, Icon} from "@blueprintjs/core"
 import Comment from "./Comment"
 import Tags from "./Tags"
 import UserBadge from "./UserBadge"
+import AddComment from "./AddComment"
+import singleQuestion from "../queries/SingleQuestionQuery"
 
-const singleQuestion = gql`
-  query Question($id: Int!) {
-    question(id: $id) {
-      id
-      title
-      text
-      created
-      modified
-      comments {
-        id
-        text
-        score
-        modified
-        created
-        owner {
-          id
-          getFullName
-        }
-      }
-      owner {
-        id
-        getFullName
-      }
-      score
-      answers {
-        id
-        text
-        modified
-        created
-        owner {
-          id
-          getFullName
-        }
-      }
-      views
-      tags {
-        id
-        name
-      }
-    }
-  }
-`
 
 class Question extends Component {
 
@@ -85,8 +45,9 @@ class Question extends Component {
               </div>
               <div className="commentBlock">
                 {question.comments.map((comment) =>
-                  <Comment key={comment.id} comment={comment}/>
+                  <Comment key={comment.id} comment={comment} questionId={question.id}/>
                 )}
+                <AddComment answerId={''} questionId={question.id} ownerId={user.id} />
               </div>
             </div>
           </div>

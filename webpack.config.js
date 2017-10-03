@@ -5,7 +5,7 @@ const BundleClean = require('webpack-bundle-clean');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: "source-map",
+  devtool: "eval-source-map",
   context: __dirname,
   entry: ['./assets/js/index', './assets/css/stylesheet.css'],
   output: {

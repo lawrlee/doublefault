@@ -3,29 +3,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Icon, Spinner, Tag} from "@blueprintjs/core"
 import moment from 'moment'
+import allQuestions from '../queries/AllQuestionsQuery'
 
-const allQuestions = gql`
-  query allQuestions {
-    allQuestions {
-      id
-      title
-      text
-      created
-      owner { 
-        getFullName
-      }
-      score
-      answers {
-        id
-      }
-      views
-      tags {
-        id
-        name
-      }
-    }
-  }
-`
 
 class QuestionList extends Component {
 
