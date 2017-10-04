@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {Spinner, Icon, EditableText} from "@blueprintjs/core"
 import {gql, graphql} from 'react-apollo';
 import moment from 'moment'
-
+import singleQuestion from '../queries/SingleQuestionQuery'
 
 const editCommentMutation = gql`
-mutation editCommentMutation($text: String!, $ownerId: String!, $id: String!) {
-    editComment(text: $text, ownerId: $ownerId, id: $id) {
+mutation editCommentMutation($text: String!, $userId: String!, $id: String!) {
+    editComment(text: $text, userId: $userId, id: $id) {
         comment {
             id,
             text
@@ -53,6 +53,7 @@ class Comment extends Component {
       variables: {
         text: this.state.value,
         id: this.props.comment.id,
+        userId: user.id
       }
     })
       .then(({data}) => {
@@ -67,26 +68,28 @@ class Comment extends Component {
 
   EditingComment(comment) {
     return (
-      <div className="pt-input-group">
-        <form onSubmit={this.saveComment}>
+      <form onSubmit={this.saveComment}>
+        <div className="pt-input-group">
           <input
             id="editComment"
             onChange={this.handleChange}
-            value={comment.text}
+            value={this.state.value}
             className="pt-input pt-fill"
             type="text"
             dir="auto"
           />
-          <Icon iconName="pt-icon-cross" onClick={this.toggleEdit}/>
-        </form>
-      </div>
+          <span className="pt-icon pt-icon-cross" onClick={this.toggleEdit}/>
+        </div>
+      </form>
     )
   }
 
   ViewingComment(comment) {
     return (
       <div className="commentBlock">
-          {comment.text} - <small>{comment.owner.getFullName}, {moment(comment.created).calendar()}</small>
+        {comment.text} -
+        <small>{comment.owner.getFullName}, {moment(comment.created).calendar()}</small>
+        &nbsp;
         {this.state.editable ? <Icon iconName="pt-icon-edit" onClick={this.toggleEdit}/> : ''}
       </div>
     )
