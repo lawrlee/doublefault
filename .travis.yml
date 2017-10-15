@@ -12,4 +12,4 @@ before_install:
   - docker build -t doublefault .
 
 script:
-  - docker run --rm doublefault pytest --ds=test_settings tests/
+  - docker run --rm -e "GOOGLE_OAUTH_KEY=" -e "GOOGLE_OAUTH_SECRET=" doublefault pytest --ds=test_settings tests/
