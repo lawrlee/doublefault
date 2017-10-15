@@ -70,7 +70,7 @@ snapshots['test_create_comment_for_question 1'] = {
             'comment': {
                 'downvotes': [
                 ],
-                'id': '7',
+                'id': '6',
                 'owner': {
                     'id': '1'
                 },
