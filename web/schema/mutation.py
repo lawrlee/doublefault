@@ -198,7 +198,10 @@ class UpvoteComment(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Comment.objects.get(pk=post_id)
 
-        post.upvotes.add(user)
+        if user in post.downvotes.all():
+            post.downvotes.remove(user)
+        else:
+            post.upvotes.add(user)
         post.save()
         return UpvoteComment(comment=post, ok=True)
 
@@ -219,7 +222,10 @@ class UpvoteQuestion(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Question.objects.get(pk=post_id)
 
-        post.upvotes.add(user)
+        if user in post.downvotes.all():
+            post.downvotes.remove(user)
+        else:
+            post.upvotes.add(user)
         post.save()
         return UpvoteQuestion(question=post, ok=True)
 
@@ -240,7 +246,10 @@ class UpvoteAnswer(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Answer.objects.get(pk=post_id)
 
-        post.upvotes.add(user)
+        if user in post.downvotes.all():
+            post.downvotes.remove(user)
+        else:
+            post.upvotes.add(user)
         post.save()
         return UpvoteAnswer(answer=post, ok=True)
 
@@ -261,7 +270,10 @@ class DownvoteComment(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Comment.objects.get(pk=post_id)
 
-        post.downvotes.add(user)
+        if user in post.upvotes.all():
+            post.upvotes.remove(user)
+        else:
+            post.downvotes.add(user)
         post.save()
         return DownvoteComment(comment=post, ok=True)
 
@@ -282,7 +294,10 @@ class DownvoteQuestion(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Question.objects.get(pk=post_id)
 
-        post.downvotes.add(user)
+        if user in post.upvotes.all():
+            post.upvotes.remove(user)
+        else:
+            post.downvotes.add(user)
         post.save()
         return DownvoteQuestion(question=post, ok=True)
 
@@ -303,7 +318,10 @@ class DownvoteAnswer(graphene.Mutation):
         user = User.objects.get(pk=user_id)
         post = Answer.objects.get(pk=post_id)
 
-        post.downvotes.add(user)
+        if user in post.upvotes.all():
+            post.upvotes.remove(user)
+        else:
+            post.downvotes.add(user)
         post.save()
         return DownvoteAnswer(answer=post, ok=True)
 
