@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.views.decorators.csrf import csrf_exempt
 
 from graphene_django.views import GraphQLView
 from web.schema import schema
@@ -23,10 +24,12 @@ from web.schema import schema
 from web import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    # url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-    url(r'^oauth2/', include('social_django.urls', namespace='social'))
+    url(r'^oauth2/', include('social_django.urls', namespace='social')),
+    url(r'^.*$', views.home, name='home')  # catch remaining urls and send to react router
+
 ]

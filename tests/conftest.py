@@ -23,15 +23,11 @@ def all_question_query_result(db, client):
         '''
 {
   allQuestions {
-    edges {
-      node {
-        id
-        owner {
-          id
-        }
-      }
+    id
+    owner {
+      id
     }
-  } 
+  }
 }
         '''
     )
@@ -43,15 +39,11 @@ def all_answer_query_result(db, client):
         '''
 {
   allAnswers {
-    edges {
-      node {
-        id
-        owner {
-          id
-        }
-      }
+    id
+    owner {
+      id
     }
-  } 
+  }
 }
         '''
     )
@@ -63,15 +55,11 @@ def all_comment_query_result(db, client):
         '''
 {
   allComments {
-    edges {
-      node {
-        id
-        owner {
-          id
-        }
-      }
+    id
+    owner {
+      id
     }
-  } 
+  }
 }
         '''
     )
@@ -83,12 +71,8 @@ def all_tag_query_result(db, client):
         '''
 {
   allTags {
-    edges {
-      node {
-        id
-      }
-    }
-  } 
+    id
+  }
 }
         '''
     )
@@ -100,12 +84,8 @@ def all_user_query_result(db, client):
         '''
 {
   allUsers {
-    edges {
-      node {
-        id
-      }
-    }
-  } 
+    id
+  }
 }
         '''
     )

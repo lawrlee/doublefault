@@ -4,143 +4,126 @@ from __future__ import unicode_literals
 
 from snapshottest import Snapshot
 
+
 snapshots = Snapshot()
 
 snapshots['test_get_all[allQuestions] 1'] = {
     'data': {
-        'allQuestions': {
-            'edges': [
-                {
-                    'node': {
-                        'id': 'UXVlc3Rpb25Ob2RlOjE='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'UXVlc3Rpb25Ob2RlOjI='
-                    }
-                }
-            ]
-        }
+        'allQuestions': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '2'
+            }
+        ]
     }
 }
 
 snapshots['test_get_all[allAnswers] 1'] = {
     'data': {
-        'allAnswers': {
-            'edges': [
-                {
-                    'node': {
-                        'id': 'QW5zd2VyTm9kZTox'
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'QW5zd2VyTm9kZToy'
-                    }
-                }
-            ]
-        }
+        'allAnswers': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '2'
+            }
+        ]
     }
 }
 
 snapshots['test_get_all[allComments] 1'] = {
     'data': {
-        'allComments': {
-            'edges': [
-                {
-                    'node': {
-                        'id': 'Q29tbWVudE5vZGU6Mg=='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'Q29tbWVudE5vZGU6Mw=='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'Q29tbWVudE5vZGU6NA=='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'Q29tbWVudE5vZGU6NQ=='
-                    }
-                }
-            ]
-        }
+        'allComments': [
+            {
+                'id': '2'
+            },
+            {
+                'id': '3'
+            },
+            {
+                'id': '4'
+            },
+            {
+                'id': '5'
+            }
+        ]
     }
 }
 
 snapshots['test_get_all[allTags] 1'] = {
     'data': {
-        'allTags': {
-            'edges': [
-                {
-                    'node': {
-                        'id': 'VGFnTm9kZTox'
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'VGFnTm9kZToy'
-                    }
-                }
-            ]
-        }
+        'allTags': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '2'
+            }
+        ]
     }
 }
 
 snapshots['test_get_all[allUsers] 1'] = {
     'data': {
-        'allUsers': {
-            'edges': [
-                {
-                    'node': {
-                        'id': 'VXNlck5vZGU6MQ=='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'VXNlck5vZGU6Mg=='
-                    }
-                },
-                {
-                    'node': {
-                        'id': 'VXNlck5vZGU6Mw=='
-                    }
-                }
-            ]
-        }
+        'allUsers': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '2'
+            },
+            {
+                'id': '3'
+            }
+        ]
     }
 }
 
 snapshots['test_get_single[allQuestions-question] 1'] = {
-    'data': {
-        'question': {
-            'id': 'UXVlc3Rpb25Ob2RlOjE=',
-            'text': 'my first question'
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 16,
+                    'line': 3
+                }
+            ],
+            'message': '''Argument "id" has invalid value "1".
+Expected type "Int", found "1".'''
         }
-    }
+    ]
 }
 
 snapshots['test_get_single[allAnswers-answer] 1'] = {
-    'data': {
-        'answer': {
-            'id': 'QW5zd2VyTm9kZTox',
-            'text': 'my first answer'
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 14,
+                    'line': 3
+                }
+            ],
+            'message': '''Argument "id" has invalid value "1".
+Expected type "Int", found "1".'''
         }
-    }
+    ]
 }
 
 snapshots['test_get_single[allComments-comment] 1'] = {
-    'data': {
-        'comment': {
-            'id': 'Q29tbWVudE5vZGU6Mg==',
-            'text': 'this is a great question'
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 15,
+                    'line': 3
+                }
+            ],
+            'message': '''Argument "id" has invalid value "2".
+Expected type "Int", found "2".'''
         }
-    }
+    ]
 }
 
 snapshots['test_get_single[allTags-tag] 1'] = {
@@ -148,11 +131,21 @@ snapshots['test_get_single[allTags-tag] 1'] = {
         {
             'locations': [
                 {
+                    'column': 11,
+                    'line': 3
+                }
+            ],
+            'message': '''Argument "id" has invalid value "1".
+Expected type "Int", found "1".'''
+        },
+        {
+            'locations': [
+                {
                     'column': 5,
                     'line': 5
                 }
             ],
-            'message': 'Cannot query field "text" on type "TagNode".'
+            'message': 'Cannot query field "text" on type "TagType".'
         }
     ]
 }

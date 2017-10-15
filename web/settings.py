@@ -25,7 +25,9 @@ SECRET_KEY = '!=npx8on^!h4lw%4ml1t($b4pdty2!g7@4v+^q0(hle@w+55!!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CSRF_USE_SESSIONS = False
+
+ALLOWED_HOSTS = ['*']
 
 LOGGING = {
     'version': 1,
@@ -58,11 +60,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
     'social_django',
-    'graphene_django'
+    'graphene_django',
+    'webpack_loader'
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'doublefault.schema.schema',
+    'SCHEMA': 'web.schema.schema',
+    'SCHEMA_OUTPUT': 'schema.json',
     'MIDDLEWARE': [
         'graphene_django.debug.DjangoDebugMiddleware',
     ]
@@ -156,6 +160,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets/bundles/'),
+)
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': '/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+    }
+}
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

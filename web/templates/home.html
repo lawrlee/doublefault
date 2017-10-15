@@ -1,6 +1,24 @@
-{% extends 'base.html' %}
-
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    {% render_bundle 'main' 'css' %}
+    <script type="text/javascript">
+      const user = {
+        id: "{{ user.id }}",
+        isAuthenticated: {{ user.is_authenticated|yesno:"true,false" }},
+        fullName: "{{ user.get_full_name }}"
+      }
+    </script>
+    {% csrf_token %}
+    <title>DoubleFault</title>
+</head>
+<body>
 {% block content %}
-  <h2>Homepage</h2>
-  <p>Hello {{ user.username }}!</p>
+<div id="root"></div>
 {% endblock %}
+{% render_bundle 'main' 'js' %}
+</body>
+</html>

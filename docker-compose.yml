@@ -8,10 +8,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - df-redis
       - df-postgres
     links:
-      - df-redis
       - df-postgres
     network_mode: bridge
 
@@ -23,9 +21,3 @@ services:
     network_mode: bridge
     ports:
       - "5432:5432"
-
-  df-redis:
-    image: redis:3-alpine
-    network_mode: bridge
-    ports:
-      - "6379:6379"
