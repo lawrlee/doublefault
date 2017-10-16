@@ -12,7 +12,8 @@ before_install:
   - docker build -t doublefault .
 
 script:
-  - docker run -n doublefault_travisci -e "GOOGLE_OAUTH_KEY=" -e "GOOGLE_OAUTH_SECRET=" -v `pwd`:/doublefault doublefault pytest --cov-report term-missing --cov=web --ds=test_settings tests/
+  - docker run --name doublefault_travisci -e "GOOGLE_OAUTH_KEY=" -e "GOOGLE_OAUTH_SECRET=" doublefault pytest --cov-report term-missing --cov=web --ds=test_settings tests/
 
 after_success:
+  - docker start doublefault_travisci
   - docker exec doublefault_travisci coveralls
