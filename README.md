@@ -88,9 +88,18 @@ The schema used by Graphene is located in `web/schema/*`. There are separate fil
 types, queries, and mutations. The mutations should be complete and allow for creating/editing
 of questions, answers, and comments. 
 
+## Installing new dependencies
+
+[pip-tools](https://github.com/jazzband/pip-tools) is used to manage dependencies. Any new 
+dependencies should be added to `requirements.in` and compiled using
+
+```commandline
+pip-compile --output-file requirements.txt requirements.in
+```
+
 ## Testing
 
-Use the `test_settings.py` settings for running tests with Sqlite3 instead of posgres.
+[pytest](https://docs.pytest.org/en/latest/) is used for testing instead of the default Django test runner. Use the `test_settings.py` settings for running tests with Sqlite3 instead of posgres.
 
 ```commandline
 pytest --ds=test_settings tests
