@@ -1,3 +1,4 @@
+coveralls
 django
 django-filter
 django-webpack-loader
@@ -10,6 +11,7 @@ pdbpp
 pip-tools
 psycopg2
 pytest
+pytest-cov
 pytest-django
 snapshottest
 social-auth-app-django

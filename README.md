@@ -1,4 +1,4 @@
-# Double Fault [![Build Status](https://travis-ci.org/lawrlee/doublefault.svg?branch=master)](https://travis-ci.org/lawrlee/doublefault)
+# Double Fault [![Build Status](https://travis-ci.org/lawrlee/doublefault.svg?branch=master)](https://travis-ci.org/lawrlee/doublefault) [![Coverage Status](https://coveralls.io/repos/github/lawrlee/doublefault/badge.svg?branch=master)](https://coveralls.io/github/lawrlee/doublefault?branch=master)
 
 An open source Question/Answer platform inspired by Stack Overflow. On the server side it uses
 
