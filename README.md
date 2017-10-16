@@ -76,6 +76,12 @@ Then within the Docker container you can use webpack to watch your client code
 # ./node_modules/.bin/webpack --config webpack.config.js --watch &
 ```
 
+load some initial testing fixtures
+
+```commandline
+# ./manage.py loaddata tests/test_fixtures.json
+```
+
 and run the Django webserver
 
 ```commandline
