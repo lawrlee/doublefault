@@ -12,6 +12,7 @@ services:
     links:
       - df-postgres
     network_mode: bridge
+    command: sh start.sh
 
   df-postgres:
     image: postgres:9.5-alpine
