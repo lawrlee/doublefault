@@ -14,6 +14,13 @@ And on the client side
 - Apollo
 - Webpack
 
+This aims to have near complete feature set with a Q/A platform akin to Stack Overflow or Quora. 
+Users have the ability to ask questions, and other users can add answers to the questions. Users 
+can also add comments to both questions and answers. The question OP can approve an answer. Users
+can also up/down vote comments, answers, and questions. 
+
+*The project is considered in early development mode and does not have full functionality.* 
+
 # Installation
 
 The easiest way to install is to use Docker and Docker Compose. You will have to make
@@ -74,6 +81,12 @@ and run the Django webserver
 ```commandline
 # ./manage.py runserver 0.0.0.0:8080
 ```
+
+## Adding GraphQL queries/mutations/types
+
+The schema used by Graphene is located in `web/schema/*`. There are separate files for 
+types, queries, and mutations. The mutations should be complete and allow for creating/editing
+of questions, answers, and comments. 
 
 ## Testing
 
